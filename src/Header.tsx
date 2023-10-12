@@ -1,8 +1,11 @@
 import React from 'react'
 import Logo from './assets/rps_logo.svg'
 
+interface HeaderProps {
+    score: number;
+}
 
-const Header: React.FC = ({score}) => {
+const Header: React.FC<HeaderProps> = ({score}) => {
 
     
     return(
