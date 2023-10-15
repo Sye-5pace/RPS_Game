@@ -1,7 +1,11 @@
 import { useState , useEffect } from 'react';
+import  Paper  from './assets/paper-card.svg'
+import  Rock  from './assets/rock-card.svg'
+import  Scissors  from './assets/scissors-card.svg' 
 
 //player's choice
 const choices = ['rock','paper','scissors']
+
 
 //Conditional statement to determine winner
 
@@ -12,13 +16,13 @@ const winner = (playerChoice:string ,computerChoice:string): string => {
             return "It's a tie";
             
         case 'rock':
-            return computerChoice === 'scissors' ? 'You win' : 'Computer wins';
+            return computerChoice === 'scissors' ? 'You win' : 'You lose';
 
         case 'paper':
-            return computerChoice === 'rock' ? 'You win' : 'Computer wins';
+            return computerChoice === 'rock' ? 'You win' : 'You lose';
         
         case 'scissors':
-            return computerChoice === 'paper' ? 'You win' : 'Computer wins';
+            return computerChoice === 'paper' ? 'You win' : 'You lose';
 
         default:
             return 'Invalid choice';
@@ -29,7 +33,7 @@ const winner = (playerChoice:string ,computerChoice:string): string => {
 
 
 //Custom Hooks
-const useRPSGame = () => {
+const useRPSGame = (setScore) => {
     const [playerChoice, setPlayerChoice] = useState<string | null>(null)
     const [computerChoice, setComputerChoice] = useState<string | null>(null)
     const [result, setResult] = useState<string | null>(null)
@@ -37,17 +41,20 @@ const useRPSGame = () => {
     useEffect(()=> {
         const computerChoiceIndex = Math.floor(Math.random() * choices.length)
         const randomComputerChoice = choices[computerChoiceIndex]
-        // console.log("computer choice index:" + computerChoiceIndex)
         console.log("computer choice rand:" + choices[computerChoiceIndex])
         setComputerChoice(randomComputerChoice)
         
         if (playerChoice){
             const gameResult = winner(playerChoice, randomComputerChoice)
             setResult(gameResult)
-            console.log("Computer choice pick: " + randomComputerChoice)
-            console.log("Game result: " + gameResult)
+
+            if(gameResult === 'You win'){
+                setScore((prevScore) => prevScore + 1);
+            }else if( gameResult === 'You lose'){
+                setScore((prevScore) => prevScore - 1)
+            }
         }
-    },[playerChoice])
+    },[playerChoice, setScore])
 
     const play = (choice) => {
         console.log("Player choice pick:" + choice)

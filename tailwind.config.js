@@ -10,7 +10,11 @@ export default {
     fontFamily:{
       barlow:[ 'Barlow Semi Condensed', 'sans-serif']
     },
-    extend: {},
+    extend: {
+      textShadow: {
+        'md': '0px 3px 3px rgba(0, 0, 0, 0.20)',
+      },
+    },
   },
   plugins: [
     plugin(function({addVariant}){
