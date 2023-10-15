@@ -60,7 +60,7 @@ const Gameboard: React.FC<GameboardProps> = ({setScore}) => {
                 </section>
             </section>
 
-            //Rules modal
+            {/* //Rules modal */}
             <section className="absolute left-[75rem] self-end top-[38.5rem]">
                 <div className=" cursor-pointer border-2 w-[8rem] h-[2.5rem] flex justify-center items-center border-white rounded-[0.8rem] ">
                     <h3 className="text-[1rem] font-semibold text-white uppercase">rules</h3>
