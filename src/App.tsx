@@ -9,7 +9,7 @@ const  App: React.FC = () => {
 
   return (
     <div className='radial-bg w-full min-h-screen flex justify-center p-0 m-0 border-box'>
-      <div className='w-full flex flex-col gap-y-[3.4rem]  pt-[2.5rem]  font-barlow'>
+      <div className='w-full flex flex-col gap-y-[3rem]  pt-[2rem]  font-barlow'>
         <Header score={score}/>
         <Gameboard  setScore={setScore}/>
       </div>
