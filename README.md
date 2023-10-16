@@ -1,2 +1,2 @@
 # RPS_Game
-A web based game version of Rock, Paper, Scissor traditional game
+A web based game version of Rock, Paper, Scissor traditional game developed with React Typescript.
