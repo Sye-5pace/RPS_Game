@@ -1,13 +1,8 @@
 import { useState , useEffect } from 'react';
-import  Paper  from './assets/paper-card.svg'
-import  Rock  from './assets/rock-card.svg'
-import  Scissors  from './assets/scissors-card.svg' 
 
-//player's choice
+
+//choices
 const choices = ['rock','paper','scissors']
-
-
-//Conditional statement to determine winner
 
 //#3 attempt to determine Winner: Switch statement handles multiple conditions correctly
 const winner = (playerChoice:string ,computerChoice:string): string => {
@@ -41,7 +36,6 @@ const useRPSGame = (setScore) => {
     useEffect(()=> {
         const computerChoiceIndex = Math.floor(Math.random() * choices.length)
         const randomComputerChoice = choices[computerChoiceIndex]
-        console.log("computer choice rand:" + choices[computerChoiceIndex])
         setComputerChoice(randomComputerChoice)
         
         if (playerChoice){
@@ -49,15 +43,14 @@ const useRPSGame = (setScore) => {
             setResult(gameResult)
 
             if(gameResult === 'You win'){
-                setScore((prevScore) => prevScore + 1);
+                setScore((prevScore: number) => prevScore + 1);
             }else if( gameResult === 'You lose'){
-                setScore((prevScore) => prevScore - 1)
+                setScore((prevScore: number) => prevScore - 1)
             }
         }
     },[playerChoice, setScore])
 
-    const play = (choice) => {
-        console.log("Player choice pick:" + choice)
+    const play = (choice: string) => {
         setPlayerChoice(choice)
     }
 

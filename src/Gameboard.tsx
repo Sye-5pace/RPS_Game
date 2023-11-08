@@ -7,7 +7,7 @@ import  Close from './assets/combined-shape.svg'
 import  Rules from './assets/rps-rules.jpg'
 import useRPSGame from "./GameHook"
 
-const cards = {
+const cards: Record<string,{ name: string,image: string}> = {
     rock: {
       name: 'Rock',
       image: Rock,
@@ -28,13 +28,17 @@ interface GameboardProps {
 }
 
 const Gameboard: React.FC<GameboardProps> = ({setScore}) => {
+    //return values of the CustomHook named GameHook
     const { playerChoice, computerChoice, result, play, reset } = useRPSGame(setScore);
+
+    //State variables for Dynamic interactions
     const [ playerSelected, setPlayerSelected ] = useState<boolean>(false)
     const [ clicked, setClicked ] = useState<boolean>(false)
     const [ playerWin, setPlayerWin ] = useState<boolean>(false)
     const [ computerWin, setComputerWin ] = useState<boolean>(false)
-    const [ tieWin, setTieWin ] = useState<boolean>(false)  
-        
+    const [ tieWin, setTieWin ] = useState<boolean>(false) 
+    
+    //Conditionals handling results effects
     useEffect(() => {
         if (result === 'You win') {
           setPlayerWin(true);
@@ -51,20 +55,18 @@ const Gameboard: React.FC<GameboardProps> = ({setScore}) => {
             setComputerWin(false);
             setTieWin(true)
         }
-
-
     }, [result]);
 
     return (
         <div className="flex gap-2 justify-center ">
             <section className='flex flex-col items-center  relative left-[1rem]'>
-                <div className={`flex flex-col items-center mt-2 relative ] ${ playerSelected ? 'hidden':'flex'}`}  onClick={()=>(console.log('A card is selected'),  setPlayerSelected(!playerSelected))}>
+                <div className={`flex flex-col items-center mt-2 relative ] ${ playerSelected ? 'hidden':'flex'}`}  >
                     <div className='flex gap-[5rem]'>
-                        <img onClick={() => play('paper')} src={Paper} alt="paper" className='w-[11.375rem] h-[11.6875rem] cursor-pointer transition-transform transform hover:-translate-y-2'/>
-                        <img onClick={() => play('scissors')} src={Scissors} alt="scissors" className='w-[11.375rem] h-[11.6875rem] cursor-pointer transition-transform transform hover:-translate-y-2'/>
+                        <img onClick={() => (play('paper') , setPlayerSelected(!playerSelected))} src={Paper} alt="paper" className='w-[11.375rem] h-[11.6875rem] cursor-pointer transition-transform transform hover:-translate-y-2'/>
+                        <img onClick={() =>( play('scissors'), setPlayerSelected(!playerSelected) )} src={Scissors} alt="scissors" className='w-[11.375rem] h-[11.6875rem] cursor-pointer transition-transform transform hover:-translate-y-2'/>
                     </div>
                     <div className='flex justify-center'>
-                        <img onClick={() => play('rock')} src={Rock} alt="paper" className='w-[11.375rem] h-[11.6875rem] cursor-pointer transition-transform transform hover:-translate-y-2'/>
+                        <img onClick={() =>( play('rock'), setPlayerSelected(!playerSelected))} src={Rock} alt="paper" className='w-[11.375rem] h-[11.6875rem] cursor-pointer transition-transform transform hover:-translate-y-2'/>
                     </div>
                 </div> 
                 <section className={` w-full ${ playerSelected ? 'block':'hidden'} flex gap-8 items-center  overflow-hidden`}>
