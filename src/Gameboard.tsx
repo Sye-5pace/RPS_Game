@@ -70,8 +70,8 @@ const Gameboard: React.FC<GameboardProps> = ({setScore}) => {
                     </div>
                 </div> 
                 <section className={` w-full ${ playerSelected ? 'block':'hidden'} flex gap-8 items-center  overflow-hidden`}>
-                    <div className="flex flex-col gap-y-[2.9375rem] items-center">
-                        <p className="text-shadow-md text-white text-[1.5rem] font-barlow font-bold tracking-wide">YOU PICKED</p>
+                    <div className="flex flex-col gap-y-[2.9375rem] items-center border">
+                        <p className="text-shadow-md text-white text-[1.5rem] font-barlow font-bold tracking-wide border">YOU PICKED</p>
                         <div className="flex flex-col items-center justify-center ">
                             { playerChoice  && <div  className={`left-[2.5rem] w-[11.3125rem] h-[11.75rem] absolute inset-0 top-[6.5rem]  ${ playerWin ? 'bg-white rounded-full opacity-75 animate-ping':''}`}></div>}
                             { playerChoice  && <div  className={`left-[1.8rem] w-[12.5rem] h-[13rem] absolute inset-0 top-[6rem]  ${ playerWin ? 'bg-white rounded-full opacity-75 animate-ping':''}`}></div>}
@@ -81,16 +81,23 @@ const Gameboard: React.FC<GameboardProps> = ({setScore}) => {
                     </div>
                     <div className="flex flex-col">
                         <p className={`text-shadow-md text-white text-[3.5rem] font-barlow font-bold tracking-wide text-center `}>{result}</p>
-                        <div className={` absolute inset-0 left-[21rem] top-[12.8rem] hover:text-[#DB2E4D] bg-gradient-to-r from-gray-300 to-white h-[1.75rem] text-[1rem] font-semibold text-[#3b4262] tracking-wide rounded-[0.5rem] w-[8.75rem] ${ tieWin ? 'animate-ping':''}`} ></div>
-                        <button className="hover:text-[#DB2E4D] bg-gradient-to-r from-gray-300 to-white h-[3rem] text-[1rem] font-semibold text-[#3b4262] tracking-wide rounded-[0.5rem] w-[13.75rem] z-[9]" onClick={() => (reset() , setPlayerSelected(!playerSelected))}>Play Again</button>
+                        <div className="flex flex-col justify-center items-center">
+                            {/* <div className={` absolute inset-0 left-[21rem] top-[9.7rem] bg-gradient-to-r from-gray-300 to-white h-[2.75rem] text-[1rem] font-semibold text-[#3b4262] tracking-wide rounded-[0.5rem] w-[8.75rem] ${ tieWin ? 'animate-ping':''}`} ></div> */}
+                            <button className="hover:text-[#DB2E4D] bg-gradient-to-r from-gray-300 to-white h-[3rem] text-[1rem] font-semibold text-[#3b4262] tracking-wide rounded-[0.5rem] w-[13.75rem] z-[9]" onClick={() => (reset() , setPlayerSelected(!playerSelected))}>Play Again</button>
+                        </div>
                     </div>
-                    <div className="flex flex-col gap-y-[2.9375rem] items-center">
-                        <p className="text-shadow-md text-white text-[1.5rem] font-barlow font-bold tracking-wide">THE HOUSE PICKED</p>
-                        <div className="flex flex-col items-center justify-center ">
-                            { computerChoice  && <div  className={`left-[37rem] w-[11.3125rem] h-[11.75rem] absolute inset-0 top-[6.5rem]  ${computerWin ? 'bg-white rounded-full opacity-75 animate-ping':''}`}></div>}
-                            { computerChoice  && <div  className={`left-[36.5rem] w-[12.5rem] h-[13rem] absolute inset-0 top-[6rem]  ${ computerWin ? 'bg-white rounded-full opacity-75 animate-ping':''}`}></div>}
-                            { computerChoice  && <div  className={`w-[14.3125rem] h-[14.75rem] left-[35.5rem] absolute inset-0 top-[5rem]  ${ computerWin ? 'bg-white rounded-full opacity-75 animate-ping':''}`}></div>}
-                            { computerChoice  && <img src={cards[computerChoice].image} alt={cards[computerChoice].name} className="w-[16.3125rem] h-[16.75rem] z-[9]"/>}
+                        <div className="text-shadow-md text-white text-[1.5rem] font-barlow font-bold tracking-wide border left-[36.8rem] top-[0.2rem] absolute  text-center w-[14.25rem]">THE HOUSE PICKED</div>
+                    <div className="absolute rounded-full z-0 top-[6rem] left-[35.3rem] ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="225" height="225" viewBox="0 0 225 225" fill="none">
+                            <circle cx="112.306" cy="112.305" r="112.315" fill="black" fill-opacity="0.1"/>
+                        </svg>
+                    </div>
+                    <div className="flex flex-col items-center justify-center gap-y-6 ">
+                        <div className="flex flex-col gap-y-[2.9375rem] items-center mt-[5rem]">
+                            {/* { computerChoice  && <div  className={`left-[37rem] w-[11.3125rem] h-[11.75rem] absolute inset-0 top-[6.5rem]  ${computerWin ? 'bg-white rounded-full opacity-75 animate-ping':''}`}></div>} */}
+                            {/* { computerChoice  && <div  className={`left-[36.5rem] w-[12.5rem] h-[13rem] absolute inset-0 top-[6rem]  ${ computerWin ? 'bg-white rounded-full opacity-75 animate-ping':''}`}></div>} */}
+                            {/* { computerChoice  && <div  className={`w-[14.3125rem] h-[14.75rem] left-[35.5rem] absolute inset-0 top-[5rem]  ${ computerWin ? 'bg-white rounded-full opacity-75 animate-ping':''}`}></div>} */}
+                            { computerChoice  && <img src={cards[computerChoice].image} alt={cards[computerChoice].name} className="w-[16.3125rem] h-[16.75rem] z-[9] "/>}
                         </div>
                     </div>
                 </section>

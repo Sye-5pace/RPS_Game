@@ -1,4 +1,4 @@
-import { useState , useEffect } from 'react';
+import { useState , useEffect,useCallback } from 'react';
 
 
 //choices
@@ -32,12 +32,11 @@ const useRPSGame = (setScore) => {
     const [playerChoice, setPlayerChoice] = useState<string | null>(null)
     const [computerChoice, setComputerChoice] = useState<string | null>(null)
     const [result, setResult] = useState<string | null>(null)
-
-    useEffect(()=> {
+    const makeComputerChoice = useCallback(() => {
         const computerChoiceIndex = Math.floor(Math.random() * choices.length)
         const randomComputerChoice = choices[computerChoiceIndex]
-        setComputerChoice(randomComputerChoice)
-        
+        setComputerChoice(randomComputerChoice) 
+
         if (playerChoice){
             const gameResult = winner(playerChoice, randomComputerChoice)
             setResult(gameResult)
@@ -48,7 +47,15 @@ const useRPSGame = (setScore) => {
                 setScore((prevScore: number) => prevScore - 1)
             }
         }
-    },[playerChoice, setScore])
+    },[playerChoice,setScore])
+
+    useEffect(()=> {
+        if (playerChoice){
+            const gameTimer = 400000;
+            const winTimer = setTimeout(makeComputerChoice, gameTimer)
+            return () => clearTimeout(winTimer)
+        }
+    },[playerChoice, setScore,makeComputerChoice])
 
     const play = (choice: string) => {
         setPlayerChoice(choice)
